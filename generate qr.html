@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            color: white;
+        }
+        h1 {
+            margin: 0;
+        }
+        main {
+            margin-top: 20px;
+            padding: 20px;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        input[type="submit"] {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #FF5722;
+            transition: background-color 0.3s ease;
+        }
+        .qr-code {
+            margin-top: 20px;
+            padding: 20px;
+            display: none;
+        }
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>QR Code Generator</h1>
+</header>
+
+<main>
+    <!-- Form to collect user input -->
+    <form id="qrForm">
+        <label for="data">Enter the text, number, or link for QR Code:</label>
+        <textarea id="data" name="data" rows="4" placeholder="Type your text, URL, number, or message here" required></textarea>
+        
+        <label for="size">Select QR Code Size:</label>
+        <select id="size" name="size">
+            <option value="100x100">Small (100x100)</option>
+            <option value="200x200" selected>Medium (200x200)</option>
+            <option value="300x300">Large (300x300)</option>
+        </select>
+
+        <input type="submit" value="Generate QR Code">
+    </form>
+
+    <!-- Area to display the generated QR code -->
+    <div class="qr-code" id="qrCode">
+        <h2>Your QR Code:</h2>
+        <img id="qrImage" src="" alt="QR Code">
+    </div>
+</main>
+
+<script>
+    // JavaScript for basic interactivity
+    document.getElementById('qrForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const data = document.getElementById('data').value;
+        const size = document.getElementById('size').value;
+        const qrCodeContainer = document.getElementById('qrCode');
+        const qrImage = document.getElementById('qrImage');
+
+        // Generate the QR code URL using goqr.me API
+        const qrCodeUrl = https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(data)}&size=${size};
+
+        // Display the QR code
+        qrImage.src = qrCodeUrl;
+        qrCodeContainer.style.display = 'block';
+    });
+</script>
+
+</body>
+</html>
